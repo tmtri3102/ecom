@@ -1,0 +1,71 @@
+Table users {
+    id integer [pk, increment]
+    name varchar(255) [not null]
+    email varchar(255) [unique, not null]
+    password varchar(255) [not null]
+    phone_number varchar(20) [not null]
+    role varchar(50) [not null]
+    created_at timestamp [not null]
+}
+
+Table addresses {
+    id integer [pk, increment]
+    user_id integer [ref: > users.id]
+    street varchar(255) [not null]
+    city varchar(100) [not null]
+    state varchar(100) [not null]
+    zip_code varchar(20) [not null]
+    country varchar(100) [not null]
+    created_at timestamp [not null]
+}
+
+Table categories {
+    id integer [pk, increment]
+    name varchar(100) [unique, not null]
+    created_at timestamp [not null]
+}
+
+Table products {
+    id integer [pk, increment]
+    category_id integer [ref: > categories.id]
+    name varchar(255) [not null]
+    description text
+    image_url varchar(255)
+    price decimal [not null]
+    created_at timestamp [not null]
+}
+
+Table orders {
+    id integer [pk, increment]
+    total_price decimal [not null]
+    created_at timestamp [not null]
+}
+
+Table order_items {
+    id integer [pk, increment]
+    order_id integer [ref: > orders.id]
+    product_id integer [ref: > products.id]
+    user_id integer [ref: > users.id]
+    quantity integer [not null]
+    price decimal [not null]
+    status varchar(50) [not null]
+    created_at timestamp [not null]
+}
+
+Table payments {
+    id integer [pk, increment]
+    order_id integer [ref: > orders.id]
+    amount decimal [not null]
+    method varchar(50) [not null]
+    status varchar(50) [not null]
+    created_at timestamp [not null]
+}
+
+Table reviews {
+    id integer [pk, increment]
+    product_id integer [ref: > products.id]
+    user_id integer [ref: > users.id]
+    content text [not null]
+    rating integer [not null]
+    created_at timestamp [not null]
+}
