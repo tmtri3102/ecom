@@ -13,7 +13,11 @@ import java.math.BigDecimal;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @AllArgsConstructor
 @NoArgsConstructor
-public class OrderDto {
+public class ProductDto {
     private Long id;
-    private BigDecimal totalPrice;
+    private String name;
+    private  String description;
+    private BigDecimal price;
+    private String imageUrl;
+    private CategoryDto category;
 }
