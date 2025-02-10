@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @AllArgsConstructor
 @NoArgsConstructor
-public class AddressDTO {
+public class AddressDto {
     private Long id;
     private String street;
     private String city;
